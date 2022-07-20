@@ -20,6 +20,12 @@
   "homepage": "https://github.com/YangLongWang/Employee-Tracker#readme",
   "dependencies": {
     "console.table": "^0.10.0",
-    "inquirer": "^8.2.4"
+    "inquirer": "^8.2.4",
+    "mysql2": "^2.3.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.20.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
   }
 }
