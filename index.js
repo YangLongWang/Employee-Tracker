@@ -4,31 +4,66 @@ const cTable = require('console.table');
 
 const db = require('./db/connection');
 
+const Menu = require('./lib/menu');
+const Department = require('./lib/department');
+const Role = require('./lib/role');
+const Employee = require('./lib/employee');
 
+const menu = new Menu();
+const department = new Department();
+const role = new Role();
+const employee = new Employee();
 
-db.connect(err => {
-	if (err) throw err;
-	console.log('Database connected.');
+async function run() {
+	db.connect(err => {
+		if (err) throw err;
+		console.log('Database connected.');
 
-	console.log(`
-	================
-	Employee Manager
-	================
-	`);
+		console.log(`
+		================
+		Employee Manager
+		================
+		`);
+		
+		// let isContinue = true;
+		// while(isContinue) {
+			menu.menu()
+				.then(answer => {
+					if (answer.menu === 'View All Employees') {
+						console.log('View All Employees');
 
-	return inquirer.prompt([
-		{
-			message: 'What would you like to do?',
-			type: 'list',
-			name: 'manage',
-			choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role',  'View All Departments', 'Add Department', 'Quit', new inquirer.Separator()]
-		}
-	]);
-});
+					} else if (answer.menu === 'Add Employee') {
+						console.log('Add Employee');
+						employee.addEmployee();
+					} else if (answer.menu === 'Update Employee Role') {
+						console.log('Update Employee Role');
 
+					} else if (answer.menu === 'View All Roles') {
+						console.log('View All Rolese');
+						
+					} else if (answer.menu === 'Add Role') {
+						console.log('Add Role');
+						role.addRole();
+					} else if (answer.menu === 'View All Departments') {
+						console.log('View All Departments');
+						department.viewAllDepartment();
+					} else if (answer.menu === 'Add Department') {
+						console.log('Add Department');
+						department.addDepartment();
+					} else {
+						console.log('Quit');
+						// isContinue = false;
+					}
+				});
+		// } 
+	})
+};
 
+run();
 
-
+// ? Add Role 
+// ? View All Department
+// ? Add Employee
 
 
 // const prompt = inquirer.createPromptModule();
