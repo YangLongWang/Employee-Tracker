@@ -1,4 +1,4 @@
-const inquirer = require('inquirer');
+// const inquirer = require('inquirer');
 // const mysql = require('mysql2');
 const cTable = require('console.table');
 
@@ -30,7 +30,7 @@ async function run() {
 			menu.menu()
 				.then(answer => {
 					if (answer.menu === 'View All Employees') {
-						console.log('View All Employees');
+						employee.viewAllEmployee(); // employee.manager_id ?
 
 					} else if (answer.menu === 'Add Employee') {
 						console.log('Add Employee');
@@ -39,22 +39,22 @@ async function run() {
 						console.log('Update Employee Role');
 
 					} else if (answer.menu === 'View All Roles') {
-						console.log('View All Rolese');
-						
+						role.viewAllRole();
+
 					} else if (answer.menu === 'Add Role') {
 						console.log('Add Role');
 						role.addRole();
 					} else if (answer.menu === 'View All Departments') {
-						console.log('View All Departments');
 						department.viewAllDepartment();
+
 					} else if (answer.menu === 'Add Department') {
-						console.log('Add Department');
 						department.addDepartment();
+						
 					} else {
 						console.log('Quit');
 						// isContinue = false;
 					}
-				});
+				})
 		// } 
 	})
 };
