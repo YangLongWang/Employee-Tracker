@@ -32,24 +32,30 @@ async function run() {
 					if (answer.menu === 'View All Employees') {
 						employee.viewAllEmployee(); // employee.manager_id ?
 
+						console.log("dshf")
+						
+						//  menu.menu();
+
 					} else if (answer.menu === 'Add Employee') {
 						console.log('Add Employee');
-						employee.addEmployee();
+						employee.addEmployee(); //
+
 					} else if (answer.menu === 'Update Employee Role') {
-						console.log('Update Employee Role');
+						console.log('Update Employee Role'); // ?
 
 					} else if (answer.menu === 'View All Roles') {
 						role.viewAllRole();
 
 					} else if (answer.menu === 'Add Role') {
-						console.log('Add Role');
-						role.addRole();
+						console.log('Add Role'); 
+						role.addRole(); // INSERT INTO role (title, department_id, salary)
+
 					} else if (answer.menu === 'View All Departments') {
 						department.viewAllDepartment();
 
 					} else if (answer.menu === 'Add Department') {
 						department.addDepartment();
-						
+
 					} else {
 						console.log('Quit');
 						// isContinue = false;
