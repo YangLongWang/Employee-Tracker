@@ -1,6 +1,4 @@
-// const inquirer = require('inquirer');
-// const mysql = require('mysql2');
-const cTable = require('console.table');
+require('events').EventEmitter.defaultMaxListeners = 15;
 
 const db = require('./db/connection');
 
@@ -14,72 +12,69 @@ const department = new Department();
 const role = new Role();
 const employee = new Employee();
 
-async function run() {
-	db.connect(err => {
-		if (err) throw err;
-		console.log('Database connected.');
+// function init() {
+// 	db.connect(err => {
+// 		if (err) throw err;
+// 		console.log('Database connnected.');
+		
+// 		console.log(`
+// 		================
+// 		Employee Manager
+// 		================
+// 		`);
 
-		console.log(`
+// 		// menuOption();
+// 	})
+// };
+
+async function menuOption() {
+	console.log(`
 		================
 		Employee Manager
 		================
 		`);
-		
-		// let isContinue = true;
-		// while(isContinue) {
-			menu.menu()
-				.then(answer => {
-					if (answer.menu === 'View All Employees') {
-						employee.viewAllEmployee(); // employee.manager_id ?
 
-						console.log("dshf")
-						
-						//  menu.menu();
-
-					} else if (answer.menu === 'Add Employee') {
-						console.log('Add Employee');
-						employee.addEmployee(); //
-
-					} else if (answer.menu === 'Update Employee Role') {
-						console.log('Update Employee Role'); // ?
-
-					} else if (answer.menu === 'View All Roles') {
-						role.viewAllRole();
-
-					} else if (answer.menu === 'Add Role') {
-						console.log('Add Role'); 
-						role.addRole(); // INSERT INTO role (title, department_id, salary)
-
-					} else if (answer.menu === 'View All Departments') {
-						department.viewAllDepartment();
-
-					} else if (answer.menu === 'Add Department') {
-						department.addDepartment();
-
-					} else {
-						console.log('Quit');
-						// isContinue = false;
-					}
-				})
-		// } 
-	})
-};
-
-run();
-
-// ? Add Role 
-// ? View All Department
-// ? Add Employee
-
-
-// const prompt = inquirer.createPromptModule();
-// prompt(questions);
+	let isContinue = true;
+	while (isContinue) {
+		const answer = await menu.menu();
 	
+		if (answer.menu === 'View All Employees') {
+			await employee.viewAllEmployees();
+	
+		} else if (answer.menu === 'Add Employee') {
+			console.log('Add Employee');
+			employee.addEmployee(); //
+			// init();
+	
+		} else if (answer.menu === 'Update Employee Role') {
+			console.log('Update Employee Role'); // ?
+	
+		} else if (answer.menu === 'View All Roles') {
+			await role.viewAllRole();
+	
+		} else if (answer.menu === 'Add Role') {
+			console.log('Add Role'); 
+			role.addRole(); // INSERT INTO role (title, department_id, salary)
+	
+		} else if (answer.menu === 'View All Departments') {
+			await department.viewAllDepartment();
+	
+		} else if (answer.menu === 'Add Department') {
+			department.addDepartment();
+	
+		} else {
+			isContinue = false;
+			return;
+		}
+	}
+}
 
-// db.promise().query("SELECT 1")
-//   .then( ([rows,fields]) => {
-//     console.log(rows);
-//   })
-//   .catch(console.log)
-//   .then( () => db.end());
+menuOption();
+
+// init()
+// 	.then(() => menuOption());
+	// .then(() => {
+	// 	return "bye-bye";
+	// })
+
 
