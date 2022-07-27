@@ -50,6 +50,3 @@ async function menuOption() {
 
 menuOption()
 	.then(() => console.log('Thank you for using Employee Manager.'));
-
-
-// accomplished addDepartment, addRole, and addEmployee that can add new data into database, and when running inquirer question that question of the type of list can load relational table's column name as choise's list
