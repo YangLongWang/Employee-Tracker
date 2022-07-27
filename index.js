@@ -1,7 +1,3 @@
-require('events').EventEmitter.defaultMaxListeners = 15;
-
-const db = require('./db/connection');
-
 const Menu = require('./lib/menu');
 const Department = require('./lib/department');
 const Role = require('./lib/role');
@@ -12,27 +8,12 @@ const department = new Department();
 const role = new Role();
 const employee = new Employee();
 
-// function init() {
-// 	db.connect(err => {
-// 		if (err) throw err;
-// 		console.log('Database connnected.');
-		
-// 		console.log(`
-// 		================
-// 		Employee Manager
-// 		================
-// 		`);
-
-// 		// menuOption();
-// 	})
-// };
-
 async function menuOption() {
 	console.log(`
 		================
 		Employee Manager
 		================
-		`);
+	`);
 
 	let isContinue = true;
 	while (isContinue) {
@@ -42,25 +23,23 @@ async function menuOption() {
 			await employee.viewAllEmployees();
 	
 		} else if (answer.menu === 'Add Employee') {
-			console.log('Add Employee');
-			employee.addEmployee(); //
-			// init();
+			await employee.addEmployee();
 	
 		} else if (answer.menu === 'Update Employee Role') {
-			console.log('Update Employee Role'); // ?
+			console.log('Update Employee Role'); // 
+			await employee.updateEmployeeRole();
 	
 		} else if (answer.menu === 'View All Roles') {
-			await role.viewAllRole();
+			await role.viewAllRoles();
 	
 		} else if (answer.menu === 'Add Role') {
-			console.log('Add Role'); 
-			role.addRole(); // INSERT INTO role (title, department_id, salary)
+			await role.addRole();
 	
 		} else if (answer.menu === 'View All Departments') {
-			await department.viewAllDepartment();
+			await department.viewAllDepartments();
 	
 		} else if (answer.menu === 'Add Department') {
-			department.addDepartment();
+			await department.addDepartment();
 	
 		} else {
 			isContinue = false;
@@ -69,12 +48,8 @@ async function menuOption() {
 	}
 }
 
-menuOption();
-
-// init()
-// 	.then(() => menuOption());
-	// .then(() => {
-	// 	return "bye-bye";
-	// })
+menuOption()
+	.then(() => console.log('Thank you for using Employee Manager.'));
 
 
+// accomplished addDepartment, addRole, and addEmployee that can add new data into database, and when running inquirer question that question of the type of list can load relational table's column name as choise's list
