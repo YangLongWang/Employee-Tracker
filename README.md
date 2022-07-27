@@ -11,12 +11,12 @@
   - [Usage](#usage)
   - [Tests](#tests)
   - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
   - [Video](#video)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
+  - [What is next](#what-is-next)
 - [Author](#author)
 
 </details>
@@ -45,19 +45,18 @@ Clone it to your own local machine and enter node index.js in command line.
 
 Users should be able to:
 
-- enter any information about team's members based on the questions.
-
-### Screenshot
-
-![](./assets/images/My%20Team%20-%20127.0.0.1.png)
+- choose what you want based on app menu.
+- view info of employees, roles, and departments.
+- can enter new employee, role, department following question.
+- can update employee's role.
 
 ### Video
 
-- Video link: [https://drive.google.com/file/d/1ieBvY-FPNoh9seR-HPol5hKcHn9PX5KO/view](https://drive.google.com/file/d/1ieBvY-FPNoh9seR-HPol5hKcHn9PX5KO/view)
+- Video link: []()
 
 ### Links
 
-- Solution URL: [https://github.com/YangLongWang/Team-Profile-Generator](https://github.com/YangLongWang/Team-Profile-Generator)
+- Solution URL: [https://github.com/YangLongWang/Employee-Tracker](https://github.com/YangLongWang/Employee-Tracker)
 
 ## My process
 
@@ -67,20 +66,41 @@ Users should be able to:
 
 ### What I learned
 
-- setting test file
+- load choice's list form database in inquirer question.
+- based on mysql2 and console.table document to learn skill and application.
 
 To see how I add code snippets, see below:
 
 ```JS
-test('creates a employee object', () => {
-    const employee = new Employee('Joey', 1, '123@gmail.com');
+{
+  message: 'Which role do you want to assign the selected employee?',
+  type: 'list',
+  name: 'role',
+  choices: async function() {
+    const sql = 'SELECT id AS value, title AS name FROM role';
+    const roles = await db.query(sql);
+    return roles[0];
+  }
+}
 
-    expect(employee.name).toBe('Joey');
-    expect(employee.id).toEqual(expect.any(Number));
-    expect(employee.email).toEqual(expect.any(String));
-})
+const pool = mysql.createPool(
+  {
+    host: 'localhost',
+    user: 'root',
+    password: process.env.DB_PASSWORD,
+    database: 'employee_tracker'
+  }
+);
+const db = pool.promise();
 
+const table = cTable.getTable(rows);
+console.log(table);
 ```
+
+### What is next
+
+- continue to do the bonus part
+- improve user experience
 
 ## Author
 
