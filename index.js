@@ -2,6 +2,7 @@ const Menu = require('./lib/menu');
 const Department = require('./lib/department');
 const Role = require('./lib/role');
 const Employee = require('./lib/employee');
+const db = require('./db/connection');
 
 const menu = new Menu();
 const department = new Department();
@@ -26,7 +27,6 @@ async function menuOption() {
 			await employee.addEmployee();
 	
 		} else if (answer.menu === 'Update Employee Role') {
-			console.log('Update Employee Role'); // 
 			await employee.updateEmployeeRole();
 	
 		} else if (answer.menu === 'View All Roles') {
@@ -43,10 +43,10 @@ async function menuOption() {
 	
 		} else {
 			isContinue = false;
-			return;
+			console.log('Thank you for using Employee Manager.');
+			return db.end();
 		}
 	}
 }
 
-menuOption()
-	.then(() => console.log('Thank you for using Employee Manager.'));
+menuOption();
