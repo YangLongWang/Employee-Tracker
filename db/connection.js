@@ -1,19 +1,12 @@
 const mysql = require('mysql2');
 
-// const db = mysql.createConnection(
-//     {
-//         host: 'localhost',
-//         user: 'root',
-//         password: 'yangbao94Wly',
-//         database: 'employee_tracker'
-//     }
-// );
+require('dotenv').config();
 
 const pool = mysql.createPool(
     {
         host: 'localhost',
         user: 'root',
-        password: 'yangbao94Wly',
+        password: process.env.DB_PASSWORD,
         database: 'employee_tracker'
     }
 );
