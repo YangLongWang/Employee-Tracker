@@ -16,6 +16,7 @@
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
+  - [Useful resources](#useful-resources)
   - [What is next](#what-is-next)
 - [Author](#author)
 
@@ -52,7 +53,7 @@ Users should be able to:
 
 ### Video
 
-- Video link: []()
+- Video link: [https://drive.google.com/file/d/18fBCV2aMSWGP224hM5JdGnZUNfGfoKgm/view](https://drive.google.com/file/d/18fBCV2aMSWGP224hM5JdGnZUNfGfoKgm/view)
 
 ### Links
 
@@ -96,6 +97,10 @@ const db = pool.promise();
 const table = cTable.getTable(rows);
 console.log(table);
 ```
+
+### Useful resources
+
+- [https://stackoverflow.com/questions/66626936/inquirer-js-populate-list-choices-from-sql-database/73102913#73102913](https://stackoverflow.com/questions/66626936/inquirer-js-populate-list-choices-from-sql-database/73102913#73102913) - This helped me solve that load list with the database in inquirer question.
 
 ### What is next
 
