@@ -41,6 +41,9 @@ async function menuOption() {
 		} else if (answer.menu === 'Add Department') {
 			await department.addDepartment();
 	
+		} else if (answer.menu === 'View Employees by Department') {
+			await employee.viewEmployeesByDepartment();
+			
 		} else {
 			isContinue = false;
 			console.log('Thank you for using Employee Manager.');
